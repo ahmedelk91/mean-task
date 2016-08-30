@@ -13,3 +13,4 @@ var TaskSchema = new Schema({
 //setting model in mongoose utilizing schema defined above; used frequently throughout this app
 
 mongoose.model("Task", TaskSchema)
+module.exports = mongoose;

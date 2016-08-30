@@ -9,7 +9,7 @@ var methodOverride = require("method-override")
 //loads module containing all tasks controller actions
 var tasksController = require("./controllers/tasksController")
 //connect mongoose interfaces to tasks mongo db
-mongoose.connect("mongo://localhost/tasks")
+mongoose.connect("mongodb://localhost/tasks")
 //invokes express dependency and sets namespace to application
 var app = express()
 //sets view engine to handlebars

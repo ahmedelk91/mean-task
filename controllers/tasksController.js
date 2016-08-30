@@ -1,6 +1,7 @@
+var mongoose = require('../db/schema.js')
 //requires model definitions
-var TaskModel = require("../models/task")
-
+var TaskModel = require("../models/task.js")
+console.log("working")
 //instantiates a tasksController which will contain all of the controller actions
 var tasksController = {
   //the index action will make a DB query to find all task documents in our task collection, when it does it will render the tasks/index view and pass the task objects to the template

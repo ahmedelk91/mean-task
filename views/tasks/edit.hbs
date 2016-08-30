@@ -1,0 +1,14 @@
+<h2>Edit {{body}}</h2>
+<div id="task-edit">
+  <!-- link to edit this author (route and controller action not defined yet) -->
+  <a href="/tasks/{{task._id}}/edit">Edit Task</a>
+  <a href="/tasks">Back</a>
+</div></form>
+<form action="/tasks/{{task._id}}?_method=put" method="post">
+<label>Title:</label>
+<input type="type" name="name" value="{{body}}">
+<input type="submit">
+</form>
+
+<form method="post" action="/tasks/{{../task._id}}?_method=delete">
+<input type="submit" value="Delete Task">

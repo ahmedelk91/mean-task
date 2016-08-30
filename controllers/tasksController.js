@@ -27,9 +27,35 @@ var tasksController = {
     TaskModel.findById(req.params.id, function(err, doc){
       res.render("tasks/show", {task: doc})
     })
+  },
+  edit: function(req, res){
+    // the edit action will make a DB query to find a task document by ID in our
+    // tasks collection, when it does it will render the tasks/edit view and pass the task object to the template
+    TaskModel.findById(req.params.id, function(err, doc){
+      res.render("tasks/edit", {task: doc})
+    })
+  },
+  update: function(req, res){
+    //the update action will make a DB query to find a task document by ID in the tasks collection, when it does it will set the name of the task to the value specified in the form. If it saves without error, it will redirect to the tasks show page
+    TaskModel.findById(req.params.id, function(err, docs){
+      docs.name = req.body.name
+      docs.save(function(err){
+        if(!err){
+          res.redirect("/tasks/" + req.params.id)
+        }
+      })
+    })
+  },
+  delete: function(req, res){
+    //the delete action will remove task documents by ID. If there's no error it will redirect to the task's index page
+    TaskModel.remove({_id: req.params.id}, function(err){
+      if(!err){
+        res.redirect("/tasks")
+      }
+    })
   }
 }
 
-//exports the controller so we can use the file as the controller.
-//re: index.js: var tasksController = require("./controllers/tasksController")
-module.exports = tasksController
+  //exports the controller so we can use the file as the controller.
+  //re: index.js: var tasksController = require("./controllers/tasksController")
+  module.exports = tasksController

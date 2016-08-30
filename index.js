@@ -25,7 +25,11 @@ app.use(express.static(__dirname + "/public"))
 //app server located on port 4000
 app.listen(4000, function(){
   console.log("app listening on port 4000")
-})
+});
 
 //routes for all requests to this express app that map to an action/function in the tasksController
 app.get("/tasks", tasksController.index)
+//routes to new and show
+app.get("/tasks/new", tasksController.new)
+app.post("/tasks", tasksController.create)
+app.get("/tasks/:id", tasksController.show)

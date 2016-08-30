@@ -7,7 +7,8 @@ ObjectId = Schema.ObjectId
 
 //defining schema for tasks
 var TaskSchema = new Schema({
-  body: String
+  title: String,
+  description: String
 })
 
 //setting model in mongoose utilizing schema defined above; used frequently throughout this app

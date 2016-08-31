@@ -1,4 +1,5 @@
-var mongoose = require('../db/schema.js')
+var mongoose = require("mongoose")
+var Schema = require('../db/schema.js')
 //requires model definitions
 var TaskModel = require("../models/task.js")
 console.log("working")
@@ -15,7 +16,7 @@ var tasksController = {
     res.render("tasks/new")
   },
   create: function(req, res){
-    var task = new TaskModel({title: req.body.title})
+    var task = new TaskModel({title: req.body.title, description: req.body.description})
     task.save(function(err){
       if(!err){
         res.redirect("/tasks")
@@ -32,16 +33,20 @@ var tasksController = {
     // the edit action will make a DB query to find a task document by ID in our
     // tasks collection, when it does it will render the tasks/edit view and pass the task object to the template
     TaskModel.findById(req.params.id, function(err, doc){
+      console.log(req.params.id)
       res.render("tasks/edit", {task: doc})
     })
   },
   update: function(req, res){
     //the update action will make a DB query to find a task document by ID in the tasks collection, when it does it will set the name of the task to the value specified in the form. If it saves without error, it will redirect to the tasks show page
     TaskModel.findById(req.params.id, function(err, docs){
-      docs.name = req.body.name
+      docs.title = req.body.title
+      console.log(req.body.title);
       docs.save(function(err){
         if(!err){
           res.redirect("/tasks/" + req.params.id)
+        } else {
+          console.log(req.body)
         }
       })
     })

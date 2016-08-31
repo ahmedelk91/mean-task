@@ -28,11 +28,12 @@ app.listen(4000, function(){
 });
 
 //routes for all requests to this express app that map to an action/function in the tasksController
+app.get("/", tasksController.index)
 app.get("/tasks", tasksController.index)
 //routes to new and show
 app.get("/tasks/new", tasksController.new)
-app.post("/tasks", tasksController.create)
 app.get("/tasks/:id", tasksController.show)
+app.post("/tasks", tasksController.create)
 app.get("/tasks/:id/edit", tasksController.edit)
 app.put("/tasks/:id", tasksController.update)
 app.delete("/tasks/:id", tasksController.delete)
